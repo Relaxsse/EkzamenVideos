@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,6 +37,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Intent o = getIntent();
+        String kols = o.getStringExtra(MainActivity2.EXTRA_MESSAGES);
         videoView = (VideoView) findViewById(R.id.videoView);
         btnPause = (Button) findViewById(R.id.btnPause);
         btnPlay = (Button) findViewById(R.id.btnPlay);
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnLikes.setOnClickListener(this);
 
         videoAddress = "0";
+        videoAddress = kols;
         Uri vidiosUri = Uri.parse(videoAddress);
         videoView.setVideoURI(vidiosUri);
         MediaController mediaController = new MediaController(this);
